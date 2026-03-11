@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asyanur İçin Özür</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg,#ffd6e7,#ffeef5);
+text-align:center;
+padding:40px;
+}
+
+h1{
+color:#ff4d88;
+font-size:40px;
+}
+
+h2{
+color:#444;
+font-size:20px;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+margin:10px;
+cursor:pointer;
+}
+
+#evet{
+background:#ff4d88;
+color:white;
+}
+
+#hayir{
+background:#999;
+color:white;
+}
+
+.heart{
+position:fixed;
+font-size:25px;
+animation:fly 3s linear forwards;
+}
+
+@keyframes fly{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-600px);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<h1>❤️ Asyanur ❤️</h1>
+<h2>Seni Üzdüğüm İçin Özür Dilerim...</h2>
+
+<p id="yazi"></p>
+
+<h3>Birlikte Fotoğraflarımız</h3>
+<input type="file" id="foto">
+
+<h3>Bizim Şarkımız 🎵</h3>
+<input type="file" id="muzik">
+<br><br>
+<audio id="player" controls></audio>
+
+<br><br>
+
+<button id="evet" onclick="affet()">Evet ❤️</button>
+<button id="hayir">Hayır 😢</button>
+
+<script>
+let text="Asyanur... Seni üzdüğüm için gerçekten çok üzgünüm. Belki o an söylediklerim ve yaptıklarım seni kırdı, ama bilmeni isterim ki seni üzmek asla niyetim değildi. Sen benim için çok değerlisin ve seni üzmüş olmak içimi çok acıtıyor. Seni düşündüğüm her an hatamı fark ediyorum ve keşke zamanı geri alabilsem. Ama yapabileceğim tek şey sana içtenlikle özür dilemek. Seninle yaşadığımız güzel anılar, gülüşmelerimiz ve birlikte geçirdiğimiz zamanlar benim için çok kıymetli. Lütfen kalbinde bana küçük de olsa bir yer bırak, sana her zaman değer vereceğim ve hatamı telafi etmek için elimden geleni yapacağım. Seni kırdığım için gerçekten özür dilerim. Umarım beni affedersin ve birlikte daha güzel anılar biriktirebiliriz. ❤️";
+
+let i=0;
+function yaz(){
+if(i<text.length){
+document.getElementById("yazi").innerHTML+=text.charAt(i);
+i++;
+setTimeout(yaz,35);
+}
+}
+yaz();
+
+const hayir=document.getElementById("hayir");
+hayir.addEventListener("mouseover",function(){
+let x=Math.random()*window.innerWidth;
+let y=Math.random()*window.innerHeight;
+hayir.style.position="absolute";
+hayir.style.left=x+"px";
+hayir.style.top=y+"px";
+});
+
+function affet(){
+alert("Asyanur ❤️ Umarım beni affedersin");
+for(let i=0;i<40;i++){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.bottom="0px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),3000);
+}
+}
+
+document.getElementById("muzik").addEventListener("change",function(e){
+let file=e.target.files[0];
+let url=URL.createObjectURL(file);
+document.getElementById("player").src=url;
+});
+</script>
+
+</body>
+</html>
